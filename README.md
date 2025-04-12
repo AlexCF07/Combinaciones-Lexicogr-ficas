@@ -75,7 +75,7 @@ El programa genera un archivo CSV (`combinaciones.csv`) con:
    - "Comb. Calc:" seguido del número calculado de combinaciones C(n,r)
    - "Comb. Gen:" seguido del número real de combinaciones generadas
 
-## Verificación C(n,r)
+## ✅ Verificación C(n,r)
 El programa realiza una verificación importante:
 1. Calcula teóricamente el número de combinaciones usando la fórmula C(n,r) = n!/((n-r)!·r!)
 2. Cuenta las combinaciones realmente generadas
