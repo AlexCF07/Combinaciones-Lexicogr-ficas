@@ -1,30 +1,48 @@
-# Combinaciones-Lexicogr-ficas
-Programa para generar combinaciones lexicográficas para conjuntos de tamaño n y combinaciones de r elementos. 
-
 # Generador de r-Combinaciones en Orden Lexicográfico
-
-## Título y Descripción
 Este proyecto genera todas las r-combinaciones posibles de un conjunto de n elementos en orden lexicográfico, guardando los resultados en un archivo CSV. Además, verifica que el número de combinaciones generadas coincida con el cálculo teórico de combinaciones C(n,r).
 
-## Autor(a)
-[Nombre del estudiante]
+## 👤 Autor(a)
+Alejandro Cordero Fraga
 
 ## Requisitos del sistema
 - Compilador C++ compatible con C++17 (para usar `<filesystem>`)
 - Sistema operativo Windows/Linux/macOS
 
-## Instrucciones de compilación y ejecución
-1. Compilar el programa:
-   ```
-   g++ main.cpp Operaciones.cpp -o combinaciones -std=c++17
-   ```
-2. Ejecutar el programa:
-   ```
-   ./combinaciones
-   ```
-3. Seguir las instrucciones para ingresar los valores de n y r.
+## ⚙️ Compilación y ejecución  
 
-## Explicación del algoritmo
+### **Windows (CMD/PowerShell)**  
+1. **Compilar:**  
+   ```bash  
+   g++ main.cpp Operaciones.cpp -o combinaciones -std=c++17 -I .  
+   ```  
+2. **Ejecutar:**  
+   ```bash  
+   .\combinaciones.exe  
+   ```  
+
+### **Linux (Terminal)**  
+1. **Instalar dependencias (si es necesario):**  
+   ```bash  
+   sudo apt update && sudo apt install g++ build-essential  
+   ```  
+2. **Compilar:**  
+   ```bash  
+   g++ main.cpp Operaciones.cpp -o combinaciones -std=c++17 -I .  
+   ```  
+3. **Ejecutar:**  
+   ```bash  
+   ./combinaciones  
+   ```  
+
+### Notas:  
+- El flag `-std=c++17` es necesario para el manejo de `<filesystem>`.  
+- `-I .` incluye el directorio actual para la búsqueda de headers (como `Operaciones.hpp` y `CapturaSegura.hpp`).  
+- En Linux, si aparece un error relacionado con `<filesystem>`, puede ser necesario compilar con `-lstdc++fs`:  
+  ```bash  
+  g++ main.cpp Operaciones.cpp -o combinaciones -std=c++17 -I . -lstdc++fs  
+  ```
+
+## 💡 Explicación del algoritmo
 El algoritmo implementado sigue estos pasos:
 1. Inicializa un arreglo con los primeros r índices (0, 1, 2, ..., r-1)
 2. Genera la siguiente combinación encontrando el índice más a la derecha que puede incrementarse
@@ -33,7 +51,7 @@ El algoritmo implementado sigue estos pasos:
 
 Este método asegura que cada combinación se genere exactamente una vez y en orden lexicográfico.
 
-## Orden Lexicográfico
+## 🚥 Orden Lexicográfico
 El orden lexicográfico para combinaciones es similar al orden alfabético, donde cada combinación se trata como una secuencia ordenada. Por ejemplo, para n=4 y r=2:
 1. (0, 1)
 2. (0, 2)
@@ -44,13 +62,13 @@ El orden lexicográfico para combinaciones es similar al orden alfabético, dond
 
 El algoritmo asegura este orden generando siempre la siguiente combinación que sería mayor en este orden.
 
-## Validación de entrada
+## ⬇️ Validación de entrada
 El programa valida que:
 - n sea un entero mayor o igual a 1 (n ≥ 1)
-- r sea un entero entre 0 y n inclusive (0 ≤ r ≤ n)
+- r sea un entero entre 0 y n inclusive (0 < r ≤ n)
 - Los valores ingresados sean numéricos (no permite caracteres)
 
-## Formato de salida
+## ⬆️ Formato de salida
 El programa genera un archivo CSV (`combinaciones.csv`) con:
 1. Cada combinación en una línea separada, con elementos separados por comas
 2. Al final del archivo, dos líneas adicionales:
