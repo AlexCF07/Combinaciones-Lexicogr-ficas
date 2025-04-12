@@ -62,6 +62,20 @@ El orden lexicográfico para combinaciones es similar al orden alfabético, dond
 
 El algoritmo asegura este orden generando siempre la siguiente combinación que sería mayor en este orden.
 
+## 🛠️ Estructura del Código  
+
+- **`main.cpp`**: Punto de entrada del programa, maneja la interacción con el usuario y la ejecución principal.  
+- **`Operaciones.cpp`**: Implementa las funciones clave para calcular combinaciones (C(n,r)) y generar las r-combinaciones en orden lexicográfico.  
+- **`Operaciones.hpp`**: Cabecera que declara las funciones utilizadas en `Operaciones.cpp`.  
+- **`CapturaSegura.hpp`**: Biblioteca para manejar la entrada de datos de usuario de forma segura (validación de tipos).  
+- **`combinaciones.csv`**: Archivo de salida generado por el programa con los resultados en formato CSV.  
+- **`README.md`**: Documentación del proyecto (instrucciones, explicación técnica, etc.).  
+- **`LICENSE`**: Licencia del código (condiciones de uso y distribución).  
+
+### Observaciones:  
+- Algunos archivos (`GenerarCombinaciones.cpp`, `CombinacionesLexicograficas.cpp`) parecen tener funcionalidades solapadas. Se recomienda revisar su contenido para evitar redundancias.  
+- La estructura sugiere que el programa podría modularizarse mejor (ej. separar lógica de generación de combinaciones de cálculos matemáticos).
+
 ## ⬇️ Validación de entrada
 El programa valida que:
 - n sea un entero mayor o igual a 1 (n ≥ 1)
