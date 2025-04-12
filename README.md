@@ -1,4 +1,4 @@
-# Generador de r-Combinaciones en Orden Lexicográfico
+# 🚀 Generador de r-Combinaciones en Orden Lexicográfico
 Este proyecto genera todas las r-combinaciones posibles de un conjunto de n elementos en orden lexicográfico, guardando los resultados en un archivo CSV. Además, verifica que el número de combinaciones generadas coincida con el cálculo teórico de combinaciones C(n,r).
 
 ## 👤 Autor(a)
