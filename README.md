@@ -95,8 +95,3 @@ El programa genera un archivo CSV con tres filas:
 
 
 
-
-  # Explicación sobre la clonación vs. descarga directa
-
-
-
