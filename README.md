@@ -1,97 +1,113 @@
-# 🚀 Comparación de Evaluación de Polinomios
+# 🚀 Generador de Combinaciones en Orden Lexicográfico
+Este programa genera todas las posibles r-combinaciones de un conjunto de n elementos en orden lexicográfico, implementando un algoritmo eficiente. Además, calcula el número teórico de combinaciones C(n,r) mediante fórmula factorial y verifica que coincida con el conteo real de combinaciones generadas.
 
-Este proyecto compara experimentalmente dos métodos para evaluar polinomios: el método tradicional (evaluación directa) y el esquema de Horner. Mide sus tiempos de ejecución para polinomios de distintos grados (desde 10 hasta 1000) y genera un archivo CSV con los resultados para su análisis.
-
-## 👤 Autor(a)
+## 👤 Autor(
 Alejandro Cordero Fraga
 
 ## ⚙️ Requisitos del Sistema
-### Para Windows:
-- Compilador: MinGW-w64 (g++ 9.0 o superior)
-- CMake (opcional, versión 3.15+)
-- Git Bash (recomendado para la terminal)
+- Compilador C++17 (g++ 9.0+ o equivalente)
+- Sistema operativo: Windows/Linux/macOS
+- Bibliotecas estándar de C++17
 
-### Para Linux:
-- Compilador: g++ (versión 9.0 o superior)
-- Build-essential
-- Git
+## 🛠️ Compilación y Ejecución
 
-## 🛠️ Compilación y ejecución
+### Windows
 
-### Windows (sin Git):
-1. Descarga el ZIP desde GitHub
-2. Extrae en una carpeta
-3. Abre PowerShell/CMD en esa ubicación
-4. Ejecuta:
+1. **Preparación del entorno**:
+   - Instalar [MinGW-w64](https://www.mingw-w64.org/) con soporte para C++17
+   - Asegurar que `g++.exe` esté en el PATH del sistema
+
+2. **Compilación** (ejecutar en PowerShell o CMD):
    ```powershell
-   g++ -std=c++17 main.cpp Operaciones.cpp -o evaluacion_polinomios.exe
-   .\evaluacion_polinomios.exe
+   g++ -std=c++17 main.cpp Operaciones.cpp -o generador_combinaciones.exe
    ```
 
-### Linux (sin Git):
-1. Descarga el ZIP desde GitHub
-2. Extrae:
-   ```bash
-   unzip Comparacion-Evaluacion-Polinomios-main.zip
-   cd Comparacion-Evaluacion-Polinomios-main
+3. **Ejecución**:
+   ```powershell
+   .\generador_combinaciones.exe
    ```
-3. Compila y ejecuta:
+
+4. **Requisitos adicionales**:
+   - Habilitar ejecución de scripts si aparece error de políticas
+   - Tener permisos de escritura en el directorio de trabajo
+
+### Linux
+
+1. **Instalación de dependencias** (Ubuntu/Debian):
    ```bash
-   g++ -std=c++17 main.cpp Operaciones.cpp -o evaluacion_polinomios
-   ./evaluacion_polinomios
-   ``
-## 📊 Descripción de los Algoritmos
+   sudo apt update && sudo apt install g++ build-essential
+   ```
 
-### Método Tradicional
-Evalúa el polinomio calculando cada término por separado usando potencias:
-```
-P(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₁x + a₀
-```
-- **Complejidad**: O(n²) operaciones
-- **Ventaja**: Fácil de implementar
-- **Desventaja**: Ineficiente para grados altos
+2. **Compilación**:
+   ```bash
+   g++ -std=c++17 main.cpp Operaciones.cpp -o generador_combinaciones
+   ```
 
-### Método de Horner
-Reescribe el polinomio para minimizar operaciones:
-```
-P(x) = ((...((aₙx + aₙ₋₁)x + aₙ₋₂)...)x + a₁)x + a₀
-```
-- **Complejidad**: O(n) operaciones
-- **Ventaja**: Más eficiente en tiempo y memoria
-- **Desventaja**: Menos intuitivo
+3. **Dar permisos de ejecución**:
+   ```bash
+   chmod +x generador_combinaciones
+   ```
 
-## 📈 Resultados Experimentales
+4. **Ejecución**:
+   ```bash
+   ./generador_combinaciones
+   ```
 
-El programa genera un archivo CSV con tres filas:
-1. Grados evaluados (de 10 en 10 hasta 1000)
-2. Tiempos de evaluación con Horner (en ns)
-3. Tiempos de evaluación tradicional (en ns)
+5. **Notas para Linux**:
+   - El comando `ls` debe mostrar los archivos `.cpp` y `.hpp`
+   - Si falta algún archivo, verificar la ruta de descarga
+   - Para ver el archivo CSV generado: `libreoffice --calc combinaciones.csv`
 
-**Gráfica comparativa** 
-// imagen
+El programa solicitará:
+1. El valor de n (número total de elementos, n ≥ 1)
+2. El valor de r (tamaño de cada combinación, 0 ≤ r ≤ n)
 
-## 🔍 Análisis de Resultados
+## 🧠 Explicación del Algoritmo
 
+El algoritmo implementado sigue estos pasos:
+1. Inicializa un arreglo con los primeros r índices en orden ascendente
+2. Genera la primera combinación
+3. Encuentra el índice más a la derecha que puede incrementarse
+4. Incrementa ese índice y ajusta los índices siguientes
+5. Repite hasta que no se puedan generar más combinaciones
 
-## ✅ Conclusiones
+**Complejidad**: O(C(n,r)) - Genera exactamente una combinación por iteración
 
+## 📚 Orden Lexicográfico
 
+En el contexto de combinaciones, el orden lexicográfico:
+- Considera las combinaciones como "palabras" donde cada elemento es un "carácter"
+- Ordena de menor a mayor como en un diccionario
+- Ejemplo para n=5, r=3:  
+  `0,1,2` → `0,1,3` → `0,1,4` → `0,2,3` → ... → `2,3,4`
 
-## 📝 Notas Adicionales
+El algoritmo asegura este orden al:
+1. Siempre incrementar el índice más a la derecha posible
+2. Ajustar los índices siguientes en secuencia ascendente
 
-### Windows:
-- Para mejor rendimiento, ejecutar en PowerShell o Git Bash
-- Puede requerir permisos de administrador para instalación
+## ✔️ Validación de Entrada
 
-### Linux:
-- Para monitorear recursos durante ejecución:
-  ```bash
-  top -d 1
-  ```
-- Para visualizar el CSV:
-  ```bash
-  libreoffice --calc Polinomios-Evaluacion.csv
-  ```
+El programa verifica:
+1. `n ≥ 1` (debe tener al menos un elemento)
+2. `0 ≤ r ≤ n` (r dentro de límites válidos)
+3. Entradas numéricas (rechaza caracteres no válidos)
 
+Mensajes de error específicos guían al usuario para correcciones.
 
+## 📄 Formato de Salida
 
+El archivo `combinaciones.csv` contiene:
+1. Todas las combinaciones generadas (una por línea)
+   - Elementos separados por comas
+   - Ejemplo: `0,1,2`
+2. Al final del archivo:
+   - `Comb. Gen:[total]` (combinaciones generadas)
+   - `Comb. Calc:[total]` (combinaciones calculadas)
+
+## 🔍 Verificación C(n,r)
+
+El programa realiza dos cálculos independientes:
+1. **Cálculo teórico**: Usa la fórmula combinatoria `C(n,r) = n!/(r!(n-r)!)`
+2. **Conteo real**: Durante la generación de combinaciones
+
+Al finalizar, compara ambos valores y reporta si coinciden, validando la corrección del algoritmo.
