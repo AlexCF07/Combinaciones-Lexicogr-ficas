@@ -16,52 +16,30 @@ Alejandro Cordero Fraga
 - Build-essential
 - Git
 
-## 🛠️ Instrucciones de Compilación y Ejecución
+## 🛠️ Compilación y ejecución
 
-### Windows:
-1. **Instalar dependencias**:
-   - Descargar MinGW-w64 desde [https://www.mingw-w64.org/](https://www.mingw-w64.org/)
-   - Añadir MinGW al PATH del sistema
-
-2. **Clonar el repositorio (en Git Bash)**:
-   ```bash
-   git clone https://github.com/[tu-usuario]/Comparacion-Evaluacion-Polinomios.git
-   cd Comparacion-Evaluacion-Polinomios
-   ```
-
-3. **Compilar el proyecto**:
-   ```bash
+### Windows (sin Git):
+1. Descarga el ZIP desde GitHub
+2. Extrae en una carpeta
+3. Abre PowerShell/CMD en esa ubicación
+4. Ejecuta:
+   ```powershell
    g++ -std=c++17 main.cpp Operaciones.cpp -o evaluacion_polinomios.exe
+   .\evaluacion_polinomios.exe
    ```
 
-4. **Ejecutar el experimento**:
+### Linux (sin Git):
+1. Descarga el ZIP desde GitHub
+2. Extrae:
    ```bash
-   ./evaluacion_polinomios.exe
+   unzip Comparacion-Evaluacion-Polinomios-main.zip
+   cd Comparacion-Evaluacion-Polinomios-main
    ```
-
-### Linux:
-1. **Instalar dependencias**:
-   ```bash
-   sudo apt update
-   sudo apt install build-essential git
-   ```
-
-2. **Clonar el repositorio**:
-   ```bash
-   git clone https://github.com/[tu-usuario]/Comparacion-Evaluacion-Polinomios.git
-   cd Comparacion-Evaluacion-Polinomios
-   ```
-
-3. **Compilar el proyecto**:
+3. Compila y ejecuta:
    ```bash
    g++ -std=c++17 main.cpp Operaciones.cpp -o evaluacion_polinomios
-   ```
-
-4. **Ejecutar el experimento**:
-   ```bash
    ./evaluacion_polinomios
-   ```
-
+   ``
 ## 📊 Descripción de los Algoritmos
 
 ### Método Tradicional
@@ -114,3 +92,11 @@ El programa genera un archivo CSV con tres filas:
   ```bash
   libreoffice --calc Polinomios-Evaluacion.csv
   ```
+
+
+
+
+  # Explicación sobre la clonación vs. descarga directa
+
+
+
