@@ -1,97 +1,116 @@
-# 🚀 Generador de r-Combinaciones en Orden Lexicográfico
-Este proyecto genera todas las r-combinaciones posibles de un conjunto de n elementos en orden lexicográfico, guardando los resultados en un archivo CSV. Además, verifica que el número de combinaciones generadas coincida con el cálculo teórico de combinaciones C(n,r).
+# 🚀 Comparación de Evaluación de Polinomios
+
+Este proyecto compara experimentalmente dos métodos para evaluar polinomios: el método tradicional (evaluación directa) y el esquema de Horner. Mide sus tiempos de ejecución para polinomios de distintos grados (desde 10 hasta 1000) y genera un archivo CSV con los resultados para su análisis.
 
 ## 👤 Autor(a)
 Alejandro Cordero Fraga
 
-## Requisitos del sistema
-- Compilador C++ compatible con C++17 (para usar `<filesystem>`)
-- Sistema operativo Windows/Linux/macOS
+## ⚙️ Requisitos del Sistema
+### Para Windows:
+- Compilador: MinGW-w64 (g++ 9.0 o superior)
+- CMake (opcional, versión 3.15+)
+- Git Bash (recomendado para la terminal)
 
-## ⚙️ Compilación y ejecución  
+### Para Linux:
+- Compilador: g++ (versión 9.0 o superior)
+- Build-essential
+- Git
 
-### **Windows (CMD/PowerShell)**  
-1. **Compilar:**  
-   ```bash  
-   g++ main.cpp Operaciones.cpp -o combinaciones -std=c++17 -I .  
-   ```  
-2. **Ejecutar:**  
-   ```bash  
-   .\combinaciones.exe  
-   ```  
+## 🛠️ Instrucciones de Compilación y Ejecución
 
-### **Linux (Terminal)**  
-1. **Instalar dependencias (si es necesario):**  
-   ```bash  
-   sudo apt update && sudo apt install g++ build-essential  
-   ```  
-2. **Compilar:**  
-   ```bash  
-   g++ main.cpp Operaciones.cpp -o combinaciones -std=c++17 -I .  
-   ```  
-3. **Ejecutar:**  
-   ```bash  
-   ./combinaciones  
-   ```  
+### Windows:
+1. **Instalar dependencias**:
+   - Descargar MinGW-w64 desde [https://www.mingw-w64.org/](https://www.mingw-w64.org/)
+   - Añadir MinGW al PATH del sistema
 
-### Notas:  
-- El flag `-std=c++17` es necesario para el manejo de `<filesystem>`.  
-- `-I .` incluye el directorio actual para la búsqueda de headers (como `Operaciones.hpp` y `CapturaSegura.hpp`).  
-- En Linux, si aparece un error relacionado con `<filesystem>`, puede ser necesario compilar con `-lstdc++fs`:  
-  ```bash  
-  g++ main.cpp Operaciones.cpp -o combinaciones -std=c++17 -I . -lstdc++fs  
+2. **Clonar el repositorio (en Git Bash)**:
+   ```bash
+   git clone https://github.com/[tu-usuario]/Comparacion-Evaluacion-Polinomios.git
+   cd Comparacion-Evaluacion-Polinomios
+   ```
+
+3. **Compilar el proyecto**:
+   ```bash
+   g++ -std=c++17 main.cpp Operaciones.cpp -o evaluacion_polinomios.exe
+   ```
+
+4. **Ejecutar el experimento**:
+   ```bash
+   ./evaluacion_polinomios.exe
+   ```
+
+### Linux:
+1. **Instalar dependencias**:
+   ```bash
+   sudo apt update
+   sudo apt install build-essential git
+   ```
+
+2. **Clonar el repositorio**:
+   ```bash
+   git clone https://github.com/[tu-usuario]/Comparacion-Evaluacion-Polinomios.git
+   cd Comparacion-Evaluacion-Polinomios
+   ```
+
+3. **Compilar el proyecto**:
+   ```bash
+   g++ -std=c++17 main.cpp Operaciones.cpp -o evaluacion_polinomios
+   ```
+
+4. **Ejecutar el experimento**:
+   ```bash
+   ./evaluacion_polinomios
+   ```
+
+## 📊 Descripción de los Algoritmos
+
+### Método Tradicional
+Evalúa el polinomio calculando cada término por separado usando potencias:
+```
+P(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₁x + a₀
+```
+- **Complejidad**: O(n²) operaciones
+- **Ventaja**: Fácil de implementar
+- **Desventaja**: Ineficiente para grados altos
+
+### Método de Horner
+Reescribe el polinomio para minimizar operaciones:
+```
+P(x) = ((...((aₙx + aₙ₋₁)x + aₙ₋₂)...)x + a₁)x + a₀
+```
+- **Complejidad**: O(n) operaciones
+- **Ventaja**: Más eficiente en tiempo y memoria
+- **Desventaja**: Menos intuitivo
+
+## 📈 Resultados Experimentales
+
+El programa genera un archivo CSV con tres filas:
+1. Grados evaluados (de 10 en 10 hasta 1000)
+2. Tiempos de evaluación con Horner (en ns)
+3. Tiempos de evaluación tradicional (en ns)
+
+**Gráfica comparativa** 
+// imagen
+
+## 🔍 Análisis de Resultados
+
+
+## ✅ Conclusiones
+
+
+
+## 📝 Notas Adicionales
+
+### Windows:
+- Para mejor rendimiento, ejecutar en PowerShell o Git Bash
+- Puede requerir permisos de administrador para instalación
+
+### Linux:
+- Para monitorear recursos durante ejecución:
+  ```bash
+  top -d 1
   ```
-
-## 💡 Explicación del algoritmo
-El algoritmo implementado sigue estos pasos:
-1. Inicializa un arreglo con los primeros r índices (0, 1, 2, ..., r-1)
-2. Genera la siguiente combinación encontrando el índice más a la derecha que puede incrementarse
-3. Incrementa ese índice y ajusta todos los índices a su derecha
-4. Repite el proceso hasta que no se puedan generar más combinaciones
-
-Este método asegura que cada combinación se genere exactamente una vez y en orden lexicográfico.
-
-## 🚥 Orden Lexicográfico
-El orden lexicográfico para combinaciones es similar al orden alfabético, donde cada combinación se trata como una secuencia ordenada. Por ejemplo, para n=4 y r=2:
-1. (0, 1)
-2. (0, 2)
-3. (0, 3)
-4. (1, 2)
-5. (1, 3)
-6. (2, 3)
-
-El algoritmo asegura este orden generando siempre la siguiente combinación que sería mayor en este orden.
-
-## 🛠️ Estructura del Código  
-
-- **`main.cpp`**: Punto de entrada del programa, maneja la interacción con el usuario y la ejecución principal.  
-- **`Operaciones.cpp`**: Implementa las funciones clave para calcular combinaciones (C(n,r)) y generar las r-combinaciones en orden lexicográfico.  
-- **`Operaciones.hpp`**: Cabecera que declara las funciones utilizadas en `Operaciones.cpp`.  
-- **`CapturaSegura.hpp`**: Biblioteca para manejar la entrada de datos de usuario de forma segura (validación de tipos).  
-- **`combinaciones.csv`**: Archivo de salida generado por el programa con los resultados en formato CSV.  
-- **`README.md`**: Documentación del proyecto (instrucciones, explicación técnica, etc.).  
-- **`LICENSE`**: Licencia del código (condiciones de uso y distribución).  
-
-### Observaciones:  
-- Algunos archivos (`GenerarCombinaciones.cpp`, `CombinacionesLexicograficas.cpp`) parecen tener funcionalidades solapadas. Se recomienda revisar su contenido para evitar redundancias.  
-- La estructura sugiere que el programa podría modularizarse mejor (ej. separar lógica de generación de combinaciones de cálculos matemáticos).
-
-## ⬇️ Validación de entrada
-El programa valida que:
-- n sea un entero mayor o igual a 1 (n ≥ 1)
-- r sea un entero entre 0 y n inclusive (0 < r ≤ n)
-- Los valores ingresados sean numéricos (no permite caracteres)
-
-## ⬆️ Formato de salida
-El programa genera un archivo CSV (`combinaciones.csv`) con:
-1. Cada combinación en una línea separada, con elementos separados por comas
-2. Al final del archivo, dos líneas adicionales:
-   - "Comb. Calc:" seguido del número calculado de combinaciones C(n,r)
-   - "Comb. Gen:" seguido del número real de combinaciones generadas
-
-## ✅ Verificación C(n,r)
-El programa realiza una verificación importante:
-1. Calcula teóricamente el número de combinaciones usando la fórmula C(n,r) = n!/((n-r)!·r!)
-2. Cuenta las combinaciones realmente generadas
-3. Compara ambos valores e informa si coinciden
-4. Esta verificación garantiza que el algoritmo generó exactamente todas las combinaciones posibles sin repeticiones ni omisiones
+- Para visualizar el CSV:
+  ```bash
+  libreoffice --calc Polinomios-Evaluacion.csv
+  ```
